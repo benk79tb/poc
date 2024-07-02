@@ -1,0 +1,11 @@
+{
+  "dt": "2022-01-20T12:57:59.823350+00:00",
+  "iurls": [
+    "http://witness_1:5631/oobi/BBilc4-L3tFUnfM_wJr4S4OJanAv_VmF_dJNN6vkf2Ha",
+    "http://witness_2:5631/oobi/BA5Vo4mWJWz4ou3lFqerCUNjwzPcg8my4cSumFAN062w",
+    "http://witness_3:5631/oobi/BFyAAOjUcvCJ4Kwz7IP6Ws8ryV5kCjBdI_nKzoHRP98M"
+  ],
+  "durls": [
+    "http://chgov:7723/oobi/EEYMNgyQNHWrsO4m65Px84M93o2url6aUpTFqNdMZdKt"
+  ]
+}

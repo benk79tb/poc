@@ -1,0 +1,173 @@
+version: '2'
+services:
+
+  chgov:
+    image: vlei
+    build: 
+      context: .
+      dockerfile: ./vlei.dockerfile
+    volumes: 
+      - ./poc/chgov:/data
+    ports:
+      - "7723:7723"
+    entrypoint: "vLEI-server -s /data/results -c /data/cache/acdc -o /data/cache/oobis"
+
+
+  witness_1:
+
+    image: witness
+    build: 
+      context: ./witness
+
+    volumes:
+      - ./poc/witness_1:/witness/keri/cf/main
+      - ./poc/state:/var/state
+    environment:
+      - CONFIG_FILE=wan-witness
+      - NAME=wan
+
+    healthcheck:
+      test: ["CMD-SHELL", "[[ -f .started ]] || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+    ports:
+      - "5642:5631" # HTTP
+      - "5632:5632" # TCP
+
+
+  witness_2:
+    image: witness
+    build: 
+      context: ./witness
+
+    volumes:
+      - ./poc/witness_2:/witness/keri/cf/main
+      - ./poc/state:/var/state
+    environment:
+      - CONFIG_FILE=wes-witness
+      # - CONFIG_FILE=main/wes-witness
+      - NAME=wes
+
+    healthcheck:
+      test: ["CMD-SHELL", "[[ -f .started ]] || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    ports:
+      - "5634:5631"
+      - "5644:5632"
+
+
+  witness_3:
+    image: witness
+    build: 
+      context: ./witness
+
+    volumes:
+      - ./poc/witness_3:/witness/keri/cf/main
+      - ./poc/state:/var/state
+    environment:
+      - CONFIG_FILE=wil-witness
+      # - CONFIG_FILE=main/wil-witness
+      - NAME=wil
+
+    healthcheck:
+      test: ["CMD-SHELL", "[[ -f .started ]] || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+    ports:
+      - "5633:5631"
+      - "5643:5632"
+
+  issuer:
+    image: user
+    build: 
+      context: ./user
+
+    volumes:
+      - ./poc/issuer:/keri/scripts
+      - ./poc/state:/var/state
+    environment:
+      - NAME=valais
+
+    depends_on:
+      # chgov:
+      #   condition: service_healthy
+      witness_1 :
+        condition: service_healthy
+      witness_2 :
+        condition: service_healthy
+      witness_3 :
+        condition: service_healthy
+
+    ports:
+      - "5621:5621"
+      - "5623:5623"
+
+  owner:
+    image: user
+    build: 
+      context: ./user
+    
+    depends_on:
+      # chgov:
+      #   condition: service_healthy
+      witness_1 :
+        condition: service_healthy
+      witness_2 :
+        condition: service_healthy
+      witness_3 :
+        condition: service_healthy
+
+
+    volumes:
+      - ./poc/owner:/keri/scripts
+      - ./poc/state:/var/state
+
+    environment:
+      - NAME=ben
+
+    # ports:
+    #   - "5621:5621"
+    #   - "5623:5623"
+
+
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
+
+
+
+    # owner:
+    #   # image: weboftrust/keri:1.1.16
+    #   build:
+    #     context: .
+    #     # dockerfile: ./path/to/your/Dockerfile
+    #   volumes:
+    #     # - ./data/owner:/home/keri/.keri
+    #     - ./owner:/var/keri
+    #   stdin_open: true
+    #   tty: true
+    
+        # - type: volume
+        #   source: myvolume
+        #   target: /path/in/container
+      # image: gleif/keripy
+      # Add configuration for the Owner service here
+
+    # issuer:
+    #   image: gleif/keripy
+    #   # Add configuration for the Issuer service here
+
+    # verifier:
+    #   image: gleif/keripy
+    #   # Add configuration for the Verifier service here
+
+
+
+# volumes:
+#   myvolume:

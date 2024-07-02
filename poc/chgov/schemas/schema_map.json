@@ -1,0 +1,10 @@
+{
+    "schemas": [
+      {
+        "schemaName": "SwissID",
+        "schemaFilePath": "idCard.json",
+        "dependencies": [],
+        "edgeName": ""
+      }
+    ]
+  }
