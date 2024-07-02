@@ -14,12 +14,14 @@ Edit the `schema_map.json` to reflect the hierarchy of credentials
 As next step we need to create SAID for every schema.
 We can do this with kaslcred from chgov directory
 
-```
+```bash
 docker run -v .:/data -it kaslcred
 python -m kaslcred /data/schemas /data/results /data/schemas/schema_map.json
 ```
 
 ## Serve with vLEI server
 
+```bash
 docker run -v .:/data -p 7723:7723 -it vlei
 vLEI-server -s /data/results -c /data/cache/acdc -o /data/cache/oobis
+```

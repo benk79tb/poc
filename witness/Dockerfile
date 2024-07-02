@@ -1,14 +1,8 @@
 # FROM gleif/keri:1.0.0
-# FROM keri
-# FROM benk79tb/keripy
 FROM benk79tb/keripy:kentbull
 # FROM weboftrust/keri:1.1.15
 
-
 SHELL ["/bin/bash", "-c"]
-
-# EXPOSE 5632
-# EXPOSE 5633
 
 RUN mkdir -p /keri
 
