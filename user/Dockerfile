@@ -10,7 +10,7 @@ FROM benk79tb/keripy:kentbull
 RUN apk --no-cache add \
     linux-headers \
     jq \
-    lmdb
+    tcpflow
 
 SHELL ["/bin/bash", "-c"]
 

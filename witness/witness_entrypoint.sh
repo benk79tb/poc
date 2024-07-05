@@ -16,6 +16,13 @@ if [ ! -f ".initialized" ]; then
 fi
 
 
+
+
+
+# tcpflow -p -c -i eth0 port 5631 > /tmp/tcpflow.log & echo $! > /tmp/tcpflow.pid
+tcpflow -p -c -i eth0 port 5631 & echo $! > /tmp/tcpflow.pid
+
+
 # Start the witness
 
 echo "Starting witness ${NAME}"

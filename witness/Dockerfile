@@ -2,6 +2,10 @@
 FROM benk79tb/keripy:kentbull
 # FROM weboftrust/keri:1.1.15
 
+
+RUN apk --no-cache add \
+    tcpflow
+
 SHELL ["/bin/bash", "-c"]
 
 RUN mkdir -p /keri
