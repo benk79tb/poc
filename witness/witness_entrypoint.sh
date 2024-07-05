@@ -20,5 +20,6 @@ fi
 
 echo "Starting witness ${NAME}"
 
+echo "Starting witness ${NAME}" > .started
 kli witness start --name "${NAME}" --alias "${NAME}" --config-dir "${CONFIG_DIR}" \
     --config-file "${CONFIG_FILE}"
