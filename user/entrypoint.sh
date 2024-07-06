@@ -25,8 +25,8 @@ echo $PREFIX > /var/state/prefix/${NAME}
 
 echo "Starting agent ${NAME}"
 
-kli agent start --insecure \
-    --config-dir ${CONFIG_DIR} --config-file ${CONFIG_FILE} &
-  PID=$!
+# kli agent start --insecure \
+#     --config-dir ${CONFIG_DIR} --config-file ${CONFIG_FILE} &
+#   PID=$!
 
 /keri/scripts/demo.sh

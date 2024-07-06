@@ -34,4 +34,9 @@ while [ "$RECEIVED_CRED" = "" ]; do
 done
 
 
-kli vc present -n ben -a ben --recipient ${VERIFIER_PREFIX} -s ${RECEIVED_CRED} --include
+echo kli vc present -n ben -a ben --recipient ${VERIFIER_PREFIX} -s ${RECEIVED_CRED} --include
+
+WAITING=""
+while [ "$WAITING" = "" ]; do
+    sleep 10
+done
