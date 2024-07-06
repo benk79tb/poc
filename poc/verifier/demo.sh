@@ -25,13 +25,5 @@ RECEIVED_CRED=""
 
 while [ "$RECEIVED_CRED" = "" ]; do
     sleep 10
-    
-    # check_prefix=$(kli vc list --name ben --poll | grep "Swiss ID")
-    # if [ "$check_prefix" != "" ]; then
-    #     check_prefix=$(kli vc list --name ben --said)
-    #     RECEIVED_CRED=$check_prefix
-    # fi
 done
 
-
-# kli vc present -n ben --recipient ${VERIFIER_PREFIX} --include
