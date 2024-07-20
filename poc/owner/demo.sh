@@ -18,7 +18,7 @@ done
 # kli oobi resolve --name ${NAME} --oobi-alias ${NAME} \
 #     --oobi ${WAN_WITNESS_URL}/oobi/${VERIFIER_PREFIX}/witness/${WAN_PREFIX}
 kli oobi resolve --name ${NAME} --oobi-alias ben \
-    --oobi http://witness_2:5631/oobi/${VERIFIER_PREFIX}/witness/BA5Vo4mWJWz4ou3lFqerCUNjwzPcg8my4cSumFAN062w
+    --oobi http://witness_3:5631/oobi/${VERIFIER_PREFIX}/witness/BFyAAOjUcvCJ4Kwz7IP6Ws8ryV5kCjBdI_nKzoHRP98M
 
 
 RECEIVED_CRED=""
