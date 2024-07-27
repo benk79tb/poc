@@ -1,6 +1,5 @@
 #!/bin/bash
 
-if [ ! -f ".initialized" ]; then
 
     # Directory does not exist
 
@@ -15,8 +14,6 @@ if [ ! -f ".initialized" ]; then
         kli vc registry incept --name ${NAME} --alias ${NAME} --registry-name ${NAME}-registry
     fi
 
-    echo "initialized" > .initialized
-fi
 
 
 PREFIX=$(kli status --name ${NAME} --alias ${NAME} | awk '/Identifier:/ {print $2}')
@@ -30,3 +27,9 @@ echo "Starting agent ${NAME}"
 #   PID=$!
 
 /keri/scripts/demo.sh
+
+WAITING=""
+# Boucle infinie pour éviter que le conteneur ne s'arrête
+while [ "$WAITING" = "" ]; do
+    sleep 1
+done

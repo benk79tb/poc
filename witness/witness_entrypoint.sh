@@ -1,6 +1,5 @@
 #!/bin/bash
 
-if [ ! -f ".initialized" ]; then
 
     # Initialize the witness
 
@@ -12,8 +11,6 @@ if [ ! -f ".initialized" ]; then
 
     echo "Initialized witness ${NAME}"
 
-    echo "Initialized" > .initialized
-fi
 
 
 
