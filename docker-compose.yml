@@ -137,9 +137,9 @@ services:
       - NAME=ben
 
   verifier:
-    image: user
+    image: verifier
     build: 
-      context: ./user
+      context: ./verifier
     
     depends_on:
       # chgov:

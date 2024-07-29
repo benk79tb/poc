@@ -1,13 +1,15 @@
 #!/bin/bash
 
+echo "Cleaning up data"
+
 cleanup() {
     local name=$1
-    echo "Cleaning up ${name}"
+    # echo "Cleaning up ${name}"
     # kli agent stop --config-dir ${CONFIG_DIR} --config-file ${CONFIG_FILE}
     
     local keriDir="data/${name}/keri"
     if [[ -d $keriDir ]]; then
-        echo rm -rf $keriDir/*
+        # echo rm -rf $keriDir/*
         rm -rf $keriDir/*
     fi
     # rm -rf $name/keri/*

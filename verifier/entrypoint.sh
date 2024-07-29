@@ -17,6 +17,11 @@
 
 
 PREFIX=$(kli status --name ${NAME} --alias ${NAME} | awk '/Identifier:/ {print $2}')
+
+
+
+/keri/scripts/start_server.sh
+
 echo $PREFIX > /var/state/prefix/${NAME}
 
 
@@ -28,8 +33,6 @@ echo $PREFIX > /var/state/prefix/${NAME}
 # kli agent start --insecure \
 #     --config-dir ${CONFIG_DIR} --config-file ${CONFIG_FILE} &
 #   PID=$!
-
-# /keri/scripts/demo.sh
 
 WAITING=""
 # Boucle infinie pour éviter que le conteneur ne s'arrête
