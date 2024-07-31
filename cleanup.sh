@@ -9,11 +9,13 @@ cleanup() {
     
     local keriDir="data/${name}/keri"
     if [[ -d $keriDir ]]; then
-        # echo rm -rf $keriDir/*
         rm -rf $keriDir/*
     fi
-    # rm -rf $name/keri/*
 
+    local logDir="data/${name}/log"
+    if [[ -d $logDir ]]; then
+        rm -rf $logDir/*
+    fi
 
     local prefFile="poc/state/prefix/${name}"
     if [[ -f $prefFile ]]; then

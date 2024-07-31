@@ -18,6 +18,8 @@ SHELL ["/bin/bash", "-c"]
 # EXPOSE 5633
 
 RUN git clone https://github.com/benk79tb/sally.git && cd sally && python3 -m pip install -e ./
+# COPY sally sally
+# RUN cd sally && python3 -m pip install -e ./
 
 
 RUN mkdir -p /keri
@@ -38,5 +40,6 @@ ENV INCEPT_CONFIG_FILE=/owner/keri/cf/inception-config.json
 ENV NAME=owner
 ENV SALT=0AB3YW5uLXRoZS13aXRuZXNz
 ENV VC_REGISTRY=1
+ENV PYTHONUNBUFFERED=1
 
 ENTRYPOINT [ "/bin/bash", "entrypoint.sh" ]

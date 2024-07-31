@@ -14,7 +14,7 @@ ISSUER_PREFIX=""
 
   sally hook demo > /var/log/sally_hook.log &
   COP_WEBHOOK_PID=$!
-  waitfor localhost:9923 -t 1
+  waitfor localhost:9923 -t 10
 
 while [ "$ISSUER_PREFIX" = "" ]; do
     sleep 1
@@ -26,6 +26,12 @@ while [ "$ISSUER_PREFIX" = "" ]; do
 done
 
 echo "Issuer prefix: $ISSUER_PREFIX"
+
+kli oobi resolve --name ${NAME} --oobi-alias ben \
+    --oobi http://witness_2:5631/oobi/${ISSUER_PREFIX}/witness/BA5Vo4mWJWz4ou3lFqerCUNjwzPcg8my4cSumFAN062w
+
+
+
   sally server start --name cop --alias cop \
     --web-hook http://127.0.0.1:9923 \
     --auth "${ISSUER_PREFIX}" > /var/log/sally.log &
@@ -41,6 +47,6 @@ echo "Issuer prefix: $ISSUER_PREFIX"
 #     --auth "${WISEMAN_PREFIX}" \
 #     --schema-mappings "${SCHEMA_MAPPING_FILE}" &
 #   SALLY_PID=$!
-  waitfor localhost:9723 -t 2
+  waitfor localhost:9723 -t 10
 
   echo "server started"

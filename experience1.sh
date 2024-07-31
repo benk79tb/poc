@@ -9,6 +9,13 @@ docker compose up -d
 
 SEPARATOR="---------------------"
 
+shutdown() {
+    docker compose down
+    ./cleanup.sh
+    exit 0
+}
+trap shutdown SIGINT
+
 get_prefix() {
     local name=$1
     local prefix=""
@@ -61,6 +68,17 @@ echo ""
 result=$(docker exec -it poc-owner-1 ./scripts/present_credential.sh $VERIFIER_PREFIX $RECEIVED_CRED)
 echo "$result"
 echo $SEPARATOR
+
+
+echo $SEPARATOR
+echo "Check data/cop/log/sally.log to view verification status."
+echo "Press Ctrl+C to stop when you are done."
+
+
+WAITING=""
+while [ "$WAITING" = "" ]; do
+    sleep 1
+done
 
 # docker compose down
 # docker exec -it poc-issuer-1 bash

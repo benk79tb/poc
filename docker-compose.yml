@@ -23,6 +23,7 @@ services:
       - ./poc/witness_1:/witness/keri/cf/main
       - ./poc/state:/var/state
       - ./data/witness_1/keri:/usr/local/var/keri
+      - ./data/witness_1/log:/var/log
     environment:
       - CONFIG_FILE=wan-witness
       - NAME=wan
@@ -47,6 +48,7 @@ services:
       - ./poc/witness_2:/witness/keri/cf/main
       - ./poc/state:/var/state
       - ./data/witness_2/keri:/usr/local/var/keri
+      - ./data/witness_2/log:/var/log
     environment:
       - CONFIG_FILE=wes-witness
       # - CONFIG_FILE=main/wes-witness
@@ -71,6 +73,7 @@ services:
       - ./poc/witness_3:/witness/keri/cf/main
       - ./poc/state:/var/state
       - ./data/witness_3/keri:/usr/local/var/keri
+      - ./data/witness_3/log:/var/log
     environment:
       - CONFIG_FILE=wil-witness
       # - CONFIG_FILE=main/wil-witness
@@ -95,6 +98,7 @@ services:
       - ./poc/issuer:/keri/scripts
       - ./poc/state:/var/state
       - ./data/valais/keri:/usr/local/var/keri
+      - ./data/valais/log:/var/log
     environment:
       - NAME=valais
 
@@ -132,6 +136,7 @@ services:
       - ./poc/owner:/keri/scripts
       - ./poc/state:/var/state
       - ./data/ben/keri:/usr/local/var/keri
+      - ./data/ben/log:/var/log
 
     environment:
       - NAME=ben
@@ -156,6 +161,7 @@ services:
       - ./poc/verifier:/keri/scripts
       - ./poc/state:/var/state
       - ./data/cop/keri:/usr/local/var/keri
+      - ./data/cop/log:/var/log
 
     environment:
       - NAME=cop
