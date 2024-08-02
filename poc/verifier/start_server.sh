@@ -12,9 +12,9 @@ echo "Waiting issuer prefix"
 ISSUER_PREFIX=""
 
 
-  sally hook demo > /var/log/sally_hook.log &
-  COP_WEBHOOK_PID=$!
-  waitfor localhost:9923 -t 10
+  # sally hook demo > /var/log/sally_hook.log &
+  # COP_WEBHOOK_PID=$!
+  # waitfor localhost:9923 -t 10
 
 while [ "$ISSUER_PREFIX" = "" ]; do
     sleep 1
@@ -37,9 +37,9 @@ kli oobi resolve --name ${NAME} --oobi-alias ben \
     --auth "${ISSUER_PREFIX}" > /var/log/sally.log &
   SALLY_PID=$!
 
-  echo sally server start --name cop --alias cop \
-    --web-hook http://127.0.0.1:9923 \
-    --auth "${ISSUER_PREFIX}"
+  # echo sally server start --name cop --alias cop \
+  #   --web-hook http://127.0.0.1:9923 \
+  #   --auth "${ISSUER_PREFIX}"
 
   echo "SALLY_PID: $SALLY_PID"
 #   sally server start --name cop --alias cop \
