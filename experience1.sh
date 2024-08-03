@@ -1,16 +1,16 @@
 #!/bin/bash
 ./cleanup.sh
-# docker compose up --build -d
+docker compose up --build -d > /dev/null
 # docker compose up -d
 
-docker compose build --no-cache
-docker compose up -d
+# docker compose build --no-cache
+# docker compose up -d
 
 
 SEPARATOR="---------------------"
 
 shutdown() {
-    docker compose down
+    docker compose down > /dev/null
     ./cleanup.sh
     exit 0
 }
@@ -30,6 +30,31 @@ get_prefix() {
     echo $prefix
 }
 
+wait_file_exists() {
+
+    local name=$1
+
+    while [ ! -f "$name" ]; do
+        sleep 1
+    done
+}
+
+wait_experience_done() {
+    local name=$1
+    local file=$2
+
+    while [ ! -f "$file" ]; do
+        sleep 1
+    done
+
+    local done=""
+    while [ "$done" = "" ]; do
+        sleep 1
+        done=$(cat $file | grep "Experience done")
+    done
+}
+
+
 OWNER_PREFIX=$(get_prefix ben)
 ISSUER_PREFIX=$(get_prefix valais)
 VERIFIER_PREFIX=$(get_prefix cop)
@@ -39,6 +64,9 @@ VERIFIER_PREFIX=$(get_prefix cop)
 # echo "Issuer prefix: $ISSUER_PREFIX"
 # echo "Verifier prefix: $VERIFIER_PREFIX"
 
+./analyze_start.sh
+
+sleep 5
 echo "All actors are ready"
 
 

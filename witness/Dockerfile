@@ -13,6 +13,7 @@ RUN mkdir -p /keri
 
 COPY wan-witness.json /witness/keri/cf/main/wan-witness.json
 
+COPY analyze_start.sh /keri
 COPY witness_entrypoint.sh /keri
 WORKDIR /keri
 

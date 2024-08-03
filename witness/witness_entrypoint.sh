@@ -18,6 +18,9 @@
 
 # tcpflow -p -c -i eth0 port 5631 > /tmp/tcpflow.log & echo $! > /tmp/tcpflow.pid
 # tcpflow -p -c -i eth0 port 5631 & echo $! > /tmp/tcpflow.pid
+# tcpflow -ttt -o /var/log/tcpflow > /var/log/tcpflow.log 2>&1 & echo $! > /tmp/tcpflow.pid
+# tcpflow -C > /var/log/tcpflow.log 2>&1 & echo $! > /tmp/tcpflow.pid
+tcpflow -o /var/log/tcpflow > /var/log/tcpflow.log 2>&1 & echo $! > /tmp/tcpflow.pid
 
 
 # Start the witness
