@@ -1,5 +1,13 @@
 #!/bin/bash
+TCPFLOW_PID_FILE="/tmp/tcpflow.pid"
+stop() {
+    if [ -f "${TCPFLOW_PID_FILE}" ]; then
+        kill -2 $(cat "${TCPFLOW_PID_FILE}")
+        rm -f "${TCPFLOW_PID_FILE}"
+    fi
+}
 
+trap stop SIGINT SIGTERM SIGKILL EXIT
 
     # Initialize the witness
 
@@ -14,13 +22,8 @@
 
 
 
-
-
-# tcpflow -p -c -i eth0 port 5631 > /tmp/tcpflow.log & echo $! > /tmp/tcpflow.pid
-# tcpflow -p -c -i eth0 port 5631 & echo $! > /tmp/tcpflow.pid
-# tcpflow -ttt -o /var/log/tcpflow > /var/log/tcpflow.log 2>&1 & echo $! > /tmp/tcpflow.pid
-# tcpflow -C > /var/log/tcpflow.log 2>&1 & echo $! > /tmp/tcpflow.pid
-tcpflow -o /var/log/tcpflow > /var/log/tcpflow.log 2>&1 & echo $! > /tmp/tcpflow.pid
+echo $(ip address show eth0 | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1) > /var/log/ip.txt
+tcpflow -o /var/log/tcpflow > /var/log/tcpflow.log 2>&1 & echo $! > TCPFLOW_PID_FILE
 
 
 # Start the witness

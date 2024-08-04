@@ -21,6 +21,11 @@ cleanup() {
     if [[ -f $prefFile ]]; then
         rm $prefFile
     fi
+
+    local logFile="data/experience.log"
+    if [[ -f $logFile ]]; then
+        rm $logFile
+    fi
 }
 
 cleanup ben

@@ -1,6 +1,9 @@
 #!/bin/bash
 
+TCPFLOW_PID_FILE="/tmp/tcpflow.pid"
 
+echo $(ip address show eth0 | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1) > /var/log/ip.txt
+tcpflow -o /var/log/tcpflow > /var/log/tcpflow.log 2>&1 & echo $! > TCPFLOW_PID_FILE
     # Directory does not exist
 
     kli init --name "${NAME}" --salt "${SALT}" --nopasscode \
