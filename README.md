@@ -1,3 +1,36 @@
+# Swiss eID system with KERI-py
+
+This is a proof of concept for a swiss electronic id system using  KERI-py.
+
+It uses docker compose to simulate and isolate various services and actors
+in an interconnected system.
+
+You can run it by executing a bash script:
+
+```bash
+./experience.sh
+```
+
+The `data` directory will contain all relevant data to be analyzed,
+with a file named `experience.log` on top.
+
+The experience is splitted into steps with `sleep` command between them
+in order to facilitate the analysys of tcpflow log files by comparing 
+to the steps in `experience.log`.
+
+Data are cleaned up at beginning of each run, and can be cleaned at any moment
+by executing:
+
+```bash
+./cleanup.sh
+```
+
+# WARNINNG
+Everything below this line is still here as reminder but shall be removed.
+
+______________________________________________________________________
+
+
 Witnesses
 
 docker build -f witness.demo.dockerfile -t witness .
