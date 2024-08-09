@@ -80,12 +80,6 @@ VERIFIER_PREFIX=$(get_prefix cop)
 log "Actors are ready"
 
 
-# echo "Owner prefix: $OWNER_PREFIX"
-# echo "Issuer prefix: $ISSUER_PREFIX"
-# echo "Verifier prefix: $VERIFIER_PREFIX"
-
-# ./analyze_start.sh
-
 sleep 5
 echo "All actors are ready"
 
@@ -130,17 +124,8 @@ echo $SEPARATOR
 
 echo "Verifying credential:"
 log "Verifying credential"
-# echo "Check data/cop/log/sally.log to view verification status."
-# echo "Press Ctrl+C to stop when you are done."
-
-
-# WAITING=""
-# while [ "$WAITING" = "" ]; do
-#     sleep 1
-# done
 
 wait_experience_done
-# log "Credential verified"
 echo $SEPARATOR
 echo "Credential verified"
 log "Experience done"
@@ -148,5 +133,3 @@ log "Experience done"
 echo "Shutting down..."
 shutdown
 
-# docker compose down
-# docker exec -it poc-issuer-1 bash
