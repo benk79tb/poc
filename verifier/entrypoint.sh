@@ -1,18 +1,23 @@
 #!/bin/bash
 
+TCPFLOW_PID_FILE="/tmp/tcpflow.pid"
 
-    # Directory does not exist
+echo $(ip address show eth0 | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1) > /var/log/ip.txt
+tcpflow -o /var/log/tcpflow > /var/log/tcpflow.log 2>&1 & echo $! > TCPFLOW_PID_FILE
 
-    kli init --name "${NAME}" --salt "${SALT}" --nopasscode \
-        --config-dir "${CONFIG_DIR}" \
-        --config-file "${CONFIG_FILE}"
 
-    kli incept --name ${NAME} --alias ${NAME} --file "${INCEPT_CONFIG_FILE}"
+# Directory does not exist
 
-    if [ "$VC_REGISTRY" = "1" ]; then
-        echo "Initializing vc registry for ${NAME}"
-        kli vc registry incept --name ${NAME} --alias ${NAME} --registry-name ${NAME}-registry
-    fi
+kli init --name "${NAME}" --salt "${SALT}" --nopasscode \
+    --config-dir "${CONFIG_DIR}" \
+    --config-file "${CONFIG_FILE}"
+
+kli incept --name ${NAME} --alias ${NAME} --file "${INCEPT_CONFIG_FILE}"
+
+if [ "$VC_REGISTRY" = "1" ]; then
+    echo "Initializing vc registry for ${NAME}"
+    kli vc registry incept --name ${NAME} --alias ${NAME} --registry-name ${NAME}-registry
+fi
 
 
 
