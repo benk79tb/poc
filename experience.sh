@@ -89,32 +89,36 @@ echo "Issuing credential:"
 echo ""
 
 log "Issuing credential"
+sleep 1
 result=$(docker exec -it poc-issuer-1 ./scripts/issue.sh $OWNER_PREFIX)
+sleep 5
 log "Credential issued"
 
 echo "$result"
 echo $SEPARATOR
 
 
-sleep 2
 echo $SEPARATOR
 echo "Receiving credential:"
 echo ""
 
 log "Receiving credential"
+sleep 1
 result=$(docker exec -it poc-owner-1 ./scripts/receive_credential.sh)
+sleep 5
 log "Credential received"
 RECEIVED_CRED=$(echo "$result" | tail -n 1)
 echo "$result"
 echo $SEPARATOR
 
-sleep 2
 echo $SEPARATOR
 echo "Presenting credential:"
 echo ""
 
 log "Presenting credential"
+sleep 2
 result=$(docker exec -it poc-owner-1 ./scripts/present_credential.sh $VERIFIER_PREFIX $RECEIVED_CRED)
+sleep 5
 log "Credential presented"
 echo "$result"
 echo $SEPARATOR
@@ -124,10 +128,12 @@ echo $SEPARATOR
 
 echo "Verifying credential:"
 log "Verifying credential"
-
+sleep 2
 wait_experience_done
 echo $SEPARATOR
 echo "Credential verified"
+sleep 5
+
 log "Experience done"
 
 echo "Shutting down..."
