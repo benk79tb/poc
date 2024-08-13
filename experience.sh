@@ -135,9 +135,9 @@ sleep 5
 echo "Credential verified"
 
 echo $SEPARATOR
-echo "Waiting 30sec before shutting down"
+echo "Waiting 5min before shutting down"
 log "No actions started"
-sleep 30
+sleep 300
 log "No actions finished"
 log "Experience done"
 
