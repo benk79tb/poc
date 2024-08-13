@@ -77,11 +77,11 @@ log "waiting for actors to be ready"
 OWNER_PREFIX=$(get_prefix ben)
 ISSUER_PREFIX=$(get_prefix valais)
 VERIFIER_PREFIX=$(get_prefix cop)
-log "Actors are ready"
 
 
 sleep 5
 echo "All actors are ready"
+log "Actors are ready"
 
 
 echo $SEPARATOR
@@ -131,9 +131,14 @@ log "Verifying credential"
 sleep 2
 wait_experience_done
 echo $SEPARATOR
-echo "Credential verified"
 sleep 5
+echo "Credential verified"
 
+echo $SEPARATOR
+echo "Waiting 30sec before shutting down"
+log "No actions started"
+sleep 30
+log "No actions finished"
 log "Experience done"
 
 echo "Shutting down..."
