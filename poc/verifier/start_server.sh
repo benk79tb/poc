@@ -27,8 +27,8 @@ done
 
 echo "Issuer prefix: $ISSUER_PREFIX"
 
-kli oobi resolve --name ${NAME} --oobi-alias ben \
-    --oobi http://witness_2:5631/oobi/${ISSUER_PREFIX}/witness/BA5Vo4mWJWz4ou3lFqerCUNjwzPcg8my4cSumFAN062w
+kli oobi resolve --name ${NAME} --oobi-alias valais \
+    --oobi http://witness_1:5631/oobi/${ISSUER_PREFIX}/witness/BBilc4-L3tFUnfM_wJr4S4OJanAv_VmF_dJNN6vkf2Ha
 
 
 

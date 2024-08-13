@@ -2,7 +2,7 @@
 
 
 kli oobi resolve --name ${NAME} --oobi-alias ben \
-    --oobi http://witness_2:5631/oobi/${1}/witness/BA5Vo4mWJWz4ou3lFqerCUNjwzPcg8my4cSumFAN062w
+    --oobi http://witness_3:5631/oobi/${1}/witness/BFyAAOjUcvCJ4Kwz7IP6Ws8ryV5kCjBdI_nKzoHRP98M
 
 
 echo kli vc present -n ben -a ben --recipient ${1} -s ${2} --include

@@ -101,6 +101,7 @@ services:
       - ./data/valais/log:/var/log
     environment:
       - NAME=valais
+      - INCEPT_CONFIG_FILE=/keri/scripts/inception-config.json
 
     depends_on:
       # chgov:
@@ -140,7 +141,7 @@ services:
 
     environment:
       - NAME=ben
-
+      - INCEPT_CONFIG_FILE=/keri/scripts/inception-config.json
   verifier:
     image: verifier
     build: 
@@ -165,5 +166,6 @@ services:
 
     environment:
       - NAME=cop
+      - INCEPT_CONFIG_FILE=/keri/scripts/inception-config.json
 
 
